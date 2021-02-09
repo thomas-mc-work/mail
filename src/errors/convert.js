@@ -24,6 +24,7 @@ import MailboxNotCachedError from './MailboxNotCachedError'
 import NoDraftsMailboxConfiguredError from './NoDraftsMailboxConfiguredError'
 import NoSentMailboxConfiguredError from './NoSentMailboxConfiguredError'
 import NoTrashMailboxConfiguredError from './NoTrashMailboxConfiguredError'
+import CouldNotConnectError from './CouldNotConnectError'
 
 const map = {
 	'OCA\\Mail\\Exception\\DraftsMailboxNotSetException': NoDraftsMailboxConfiguredError,
@@ -31,6 +32,7 @@ const map = {
 	'OCA\\Mail\\Exception\\MailboxNotCachedException': MailboxNotCachedError,
 	'OCA\\Mail\\Exception\\SentMailboxNotSetException': NoSentMailboxConfiguredError,
 	'OCA\\Mail\\Exception\\TrashMailboxNotSetException': NoTrashMailboxConfiguredError,
+	'OCA\\Mail\\Exception\\CouldNotConnectException': CouldNotConnectError,
 }
 
 /**
@@ -54,5 +56,5 @@ export const convertAxiosError = (axiosError) => {
 		return axiosError
 	}
 
-	return new map[response.data.data.type]()
+	return new map[response.data.data.type](response.data.message)
 }

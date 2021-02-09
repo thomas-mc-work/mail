@@ -204,6 +204,11 @@ return [
 			'url' => '/api/trustedsenders',
 			'verb' => 'GET'
 		],
+		[
+			'name' => 'sieve#updateAccount',
+			'url' => '/api/sieve/account/{id}',
+			'verb' => 'PUT'
+		]
 	],
 	'resources' => [
 		'accounts' => ['url' => '/api/accounts'],

@@ -69,6 +69,14 @@
 				</div>
 			</div>
 		</AppSettingsSection>
+		<AppSettingsSection v-if="account && !account.provisioned" :title="t('mail', 'Sieve server')">
+			<div id="sieve-settings">
+				<SieveAccountForm
+					:key="account.accountId"
+					ref="sieveAccountForm"
+					:account="account" />
+			</div>
+		</AppSettingsSection>
 		<AppSettingsSection :title="t('mail', 'Trusted senders')">
 			<TrustedSenders />
 		</AppSettingsSection>
@@ -85,9 +93,11 @@ import AliasSettings from '../components/AliasSettings'
 import AppSettingsDialog from '@nextcloud/vue/dist/Components/AppSettingsDialog'
 import AppSettingsSection from '@nextcloud/vue/dist/Components/AppSettingsSection'
 import TrustedSenders from './TrustedSenders'
+import SieveAccountForm from './SieveAccountForm'
 export default {
 	name: 'AccountSettings',
 	components: {
+		SieveAccountForm,
 		TrustedSenders,
 		AccountForm,
 		AliasSettings,
