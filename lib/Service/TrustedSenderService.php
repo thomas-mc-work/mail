@@ -44,8 +44,8 @@ class TrustedSenderService implements ITrustedSenderService {
 		);
 	}
 
-	public function trust(string $uid, string $email, ?bool $trust = true): void {
-		if ($trust && $this->isTrusted($uid, $email)) {
+	public function trust(string $uid, string $email, string $type, ?bool $trust = true): void {
+		if ($trust && $this->isTrusted($uid, $email, $type)) {
 			// Nothing to do
 			return;
 		}
@@ -53,12 +53,14 @@ class TrustedSenderService implements ITrustedSenderService {
 		if ($trust) {
 			$this->mapper->create(
 				$uid,
-				$email
+				$email,
+				$type
 			);
 		} else {
 			$this->mapper->remove(
 				$uid,
-				$email
+				$email,
+				$type
 			);
 		}
 	}

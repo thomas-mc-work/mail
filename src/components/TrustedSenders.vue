@@ -24,6 +24,7 @@
 		<div v-for="sender in sortedSenders"
 			:key="sender.email">
 			{{ sender.email }}
+			{{ sender.type }}
 
 			<button class="button"
 				@click="removeSender(sender)">
@@ -67,7 +68,7 @@ export default {
 			try {
 				await trustSender(
 					sender.email,
-					false
+					sender.type, false
 				)
 			} catch (error) {
 				logger.error(`Could not remove trusted sender ${sender.email}`, {
