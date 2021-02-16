@@ -107,9 +107,9 @@ class SieveClientFactory {
 			],
 		];
 
-//		if ($this->config->getSystemValue('debug', false)) {
-//			$params['logger'] = new Horde_Imap_Client_Base_Debug($this->config->getSystemValue('datadirectory') . '/horde_sieve.log');
-//		}
+		if ($this->config->getSystemValue('debug', false)) {
+			$params['logger'] = new SieveLogger($this->config->getSystemValue('datadirectory') . '/horde_sieve.log');
+		}
 
 		return new ManageSieve($params);
 	}
