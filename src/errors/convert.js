@@ -25,6 +25,7 @@ import NoDraftsMailboxConfiguredError from './NoDraftsMailboxConfiguredError'
 import NoSentMailboxConfiguredError from './NoSentMailboxConfiguredError'
 import NoTrashMailboxConfiguredError from './NoTrashMailboxConfiguredError'
 import CouldNotConnectError from './CouldNotConnectError'
+import ManageSieveError from './ManageSieveError'
 
 const map = {
 	'OCA\\Mail\\Exception\\DraftsMailboxNotSetException': NoDraftsMailboxConfiguredError,
@@ -33,6 +34,7 @@ const map = {
 	'OCA\\Mail\\Exception\\SentMailboxNotSetException': NoSentMailboxConfiguredError,
 	'OCA\\Mail\\Exception\\TrashMailboxNotSetException': NoTrashMailboxConfiguredError,
 	'OCA\\Mail\\Exception\\CouldNotConnectException': CouldNotConnectError,
+	'Horde\\ManageSieve\\Exception': ManageSieveError,
 }
 
 /**
