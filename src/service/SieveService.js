@@ -32,3 +32,27 @@ export async function updateAccount(id, data) {
 		throw convertAxiosError(error)
 	}
 }
+
+export async function getActiveScript(id) {
+	const url = generateUrl('/apps/mail/api/sieve/active/{id}', {
+		id,
+	})
+
+	try {
+		return (await axios.get(url)).data
+	} catch (error) {
+		throw convertAxiosError(error)
+	}
+}
+
+export async function updateActiveScript(id, data) {
+	const url = generateUrl('/apps/mail/api/sieve/active/{id}', {
+		id,
+	})
+
+	try {
+		return (await axios.put(url, data)).data
+	} catch (error) {
+		throw convertAxiosError(error)
+	}
+}
