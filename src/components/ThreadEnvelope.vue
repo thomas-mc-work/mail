@@ -71,10 +71,21 @@
 			</div>
 		</div>
 		<Loading v-if="loading" />
-		<Message v-else-if="message"
-			:envelope="envelope"
-			:message="message"
-			:full-height="fullHeight" />
+		<template v-else-if="message">
+			<ThreadAvatarHeader
+				class="recipients"
+				:label="`${t('mail', 'To')}:`"
+				:participants="envelope.to" />
+			<ThreadAvatarHeader
+				v-if="envelope.cc.length > 0"
+				class="recipients"
+				:label="`${t('mail', 'Cc')}:`"
+				:participants="envelope.cc" />
+			<Message
+				:envelope="envelope"
+				:message="message"
+				:full-height="fullHeight" />
+		</template>
 		<Error v-else-if="error"
 			:error="error && error.message ? error.message : t('mail', 'Not found')"
 			:message="errorMessage"
@@ -91,6 +102,7 @@ import MenuEnvelope from './MenuEnvelope'
 import Moment from './Moment'
 import Avatar from './Avatar'
 import importantSvg from '../../img/important.svg'
+import ThreadAvatarHeader from './ThreadAvatarHeader'
 import { buildRecipients as buildReplyRecipients } from '../ReplyBuilder'
 
 export default {
@@ -102,6 +114,7 @@ export default {
 		Moment,
 		Message,
 		Avatar,
+		ThreadAvatarHeader,
 	},
 	props: {
 		envelope: {
@@ -342,6 +355,10 @@ export default {
 	}
 	.left:not(.seen) {
 		font-weight: bold;
+	}
+	.recipients {
+		margin-left: 60px;
+		margin-right: 38px;
 	}
 
 </style>
